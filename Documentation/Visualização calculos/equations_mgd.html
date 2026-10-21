@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Équations MGD - Rotation et Position TCP</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            font-size: 18px;
+            color: #333;
+            background-color: white;
+        }
+        h3 {
+            color: #0056b3;
+            margin-top: 30px;
+        }
+        .math-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="math-container">
+        <h3>Étape 1 : Décomposition de la matrice \( ^0T_E \)</h3>
+        <p>Comme dans le corrigé du robot ABB, nous isolons la matrice d'orientation (rotation 3×3) \( ^0_ER \) et le vecteur de position \( ^0P_E \) :</p>
+        $$ ^0T_E = \begin{bmatrix} ^0_ER & ^0P_E \\ 0 \quad 0 \quad 0 & 1 \end{bmatrix} $$
+    </div>
+
+    <h3>Rotation (Matrice 3×3 complète \(^0_ER\)) :</h3>
+    <div class="math-container">
+        $$ ^0_ER = \left[\begin{matrix}C_{1} C_{5} C_{23} + S_{5} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) & - C_{1} C_{23} S_{5} S_{6} + C_{5} S_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) - C_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right) & - C_{1} C_{6} C_{23} S_{5} + C_{5} C_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) + S_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right)\\C_{5} C_{23} S_{1} + S_{5} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) & C_{5} S_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) - C_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right) - C_{23} S_{1} S_{5} S_{6} & C_{5} C_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) - C_{6} C_{23} S_{1} S_{5} + S_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right)\\C_{4} C_{23} S_{5} + C_{5} S_{23} & C_{4} C_{5} C_{23} S_{6} + C_{6} C_{23} S_{4} - S_{5} S_{6} S_{23} & C_{4} C_{5} C_{6} C_{23} - C_{6} S_{5} S_{23} - C_{23} S_{4} S_{6}\end{matrix}\right] $$
+    </div>
+
+    <h3>Rotation (Détail des 9 composantes \(r_{ij}\) de la matrice 3×3 \(^0_ER\)) :</h3>
+    <div class="math-container">
+        $$ ^0_ER = \begin{bmatrix} r_{11} & r_{12} & r_{13} \\ r_{21} & r_{22} & r_{23} \\ r_{31} & r_{32} & r_{33} \end{bmatrix} $$
+        <br>
+        $$ \begin{aligned}
+        r_{11} &= C_{1} C_{5} C_{23} + S_{5} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) \\
+        r_{21} &= C_{5} C_{23} S_{1} + S_{5} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) \\
+        r_{31} &= C_{4} C_{23} S_{5} + C_{5} S_{23} \\[10pt]
+        r_{12} &= - C_{1} C_{23} S_{5} S_{6} + C_{5} S_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) - C_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right) \\
+        r_{22} &= C_{5} S_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) - C_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right) - C_{23} S_{1} S_{5} S_{6} \\
+        r_{32} &= C_{4} C_{5} C_{23} S_{6} + C_{6} C_{23} S_{4} - S_{5} S_{6} S_{23} \\[10pt]
+        r_{13} &= - C_{1} C_{6} C_{23} S_{5} + C_{5} C_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) + S_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right) \\
+        r_{23} &= C_{5} C_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) - C_{6} C_{23} S_{1} S_{5} + S_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right) \\
+        r_{33} &= C_{4} C_{5} C_{6} C_{23} - C_{6} S_{5} S_{23} - C_{23} S_{4} S_{6}
+        \end{aligned} $$
+    </div>
+
+    <h3>Position tcp :</h3>
+    <div class="math-container">
+        $$ P_x = C_1(L_3 C_{23} - L_2 S_2 - L_{3x} S_{23}) + L_6 [C_1 C_5 C_{23} - S_5(C_1 C_4 S_{23} - S_1 S_4)] $$
+        <br>
+        $$ P_y = S_1(L_3 C_{23} - L_2 S_2 - L_{3x} S_{23}) + L_6 [S_1 C_5 C_{23} - S_5(S_1 C_4 S_{23} + C_1 S_4)] $$
+        <br>
+        $$ P_z = L_0 + L_2 C_2 + L_3 S_{23} + L_{3x} C_{23} + L_6 [C_4 S_5 C_{23} + C_5 S_{23}] $$
+    </div>
+
+</body>
+</html>

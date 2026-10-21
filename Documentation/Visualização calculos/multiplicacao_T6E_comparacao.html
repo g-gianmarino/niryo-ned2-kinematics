@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Multiplication MGD - Comparaison</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; font-size: 14px; background-color: white; }
+        h3 { color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .math-container { background-color: #f8f9fa; padding: 15px; border: 1px solid #dee2e6; margin-bottom: 30px; overflow-x: auto; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+    <h2>Comparaison des méthodes pour la matrice \(^6T_E\) (Modèle Corrigé)</h2>
+    <p>Cette page montre la multiplication exacte de vos deux matrices D-H finales avec \(L_{5x} = 0\) (poignet rotule sphérique).</p>
+    
+    <div class="math-container">
+        <h3>1. Matrice \(^6T_{E'} \) (Calculée via DH)</h3>
+        $$ ^6T_{E'} = \left[\begin{matrix}1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & L_{6}\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>2. Matrice \(^{E'}T_E \) (Calculée via DH sans décalage)</h3>
+        $$ ^{E'}T_E = \left[\begin{matrix}0 & -1 & 0 & LE\\0 & 0 & -1 & 0\\1 & 0 & 0 & 0\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>3. Résultat de la multiplication : \(^6T_E = ^6T_{E'} \times ^{E'}T_E\)</h3>
+        $$ ^6T_E (calculé) = \left[\begin{matrix}0 & -1 & 0 & LE\\0 & 0 & -1 & 0\\1 & 0 & 0 & L_{6}\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>4. Matrice du Professeur (pour comparaison)</h3>
+        $$ ^6T_E (prof) = \left[\begin{matrix}0 & -1 & 0 & 0\\0 & 0 & -1 & 0\\1 & 0 & 0 & L_{6}\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+    
+    <div style="background-color: #d4edda; padding: 15px; border-left: 5px solid #28a745;">
+        <strong>Analyse :</strong> Avec \(L_{5x} = 0\), le poignet est parfaitement sphérique et satisfait le critère de Pieper. 
+        Votre calcul correspond <strong>exactement</strong> à la matrice du professeur ! 
+        La seule différence formelle est l'ajout de \(LE\) dans votre vecteur position X. Étant donné que \(LE = 0\) pour notre effecteur, vos matrices DH valident mathématiquement et formellement la matrice donnée en cours !
+    </div>
+</body>
+</html>

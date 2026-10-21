@@ -1,0 +1,20 @@
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# OS & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Heavy installers & external course materials (kept locally only)
+Download NiryoStudio/
+Robótica Klebão/
+Documentation/Documentos Niryo/
+Documentation/Rapports/
+Documentation/Resources_Chocron/

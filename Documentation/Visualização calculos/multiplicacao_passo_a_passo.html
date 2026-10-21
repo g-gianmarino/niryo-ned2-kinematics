@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Multiplication MGD</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; font-size: 14px; background-color: white; }
+        h3 { color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .math-container { background-color: #f8f9fa; padding: 15px; border: 1px solid #dee2e6; margin-bottom: 30px; overflow-x: auto; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+    <h2>Multiplication Étape par Étape du MGD (L1=0, L4=0, L5=0, L5x=0)</h2>
+    <p>Cette page contient les matrices intermédiaires simplifiées algébriquement avec poignet rotule sphérique (\(L_{5x} = 0\)) calculées via <b>Python (SymPy)</b> et rendues via <b>LaTeX / MathJax</b>.</p>
+    
+    <div class="math-container">
+        <h3>1. Matrice \(^0T_2 = ^0_1T \times ^1_2T\)</h3>
+        $$ ^0T_2 = \left[\begin{matrix}- C_{1} S_{2} & - C_{1} C_{2} & S_{1} & 0\\- S_{1} S_{2} & - C_{2} S_{1} & - C_{1} & 0\\C_{2} & - S_{2} & 0 & L_{0}\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>2. Matrice \(^2T_4 = ^2_3T \times ^3_4T\)</h3>
+        $$ ^2T_4 = \left[\begin{matrix}C_{3} C_{4} & - C_{3} S_{4} & S_{3} & C_{3} L3x + L_{2} + L_{3} S_{3}\\C_{4} S_{3} & - S_{3} S_{4} & - C_{3} & - C_{3} L_{3} + L3x S_{3}\\S_{4} & C_{4} & 0 & 0\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>3. Matrice \(^4T_6 = ^4_5T \times ^5_6T\)</h3>
+        $$ ^4T_6 = \left[\begin{matrix}- C_{5} S_{6} & - C_{5} C_{6} & S_{5} & 0\\C_{6} & - S_{6} & 0 & 0\\S_{5} S_{6} & C_{6} S_{5} & C_{5} & 0\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>4. Matrice \(^0T_4 = ^0T_2 \times ^2T_4\)</h3>
+        $$ ^0T_4 = \left[\begin{matrix}- C_{1} C_{4} S_{23} + S_{1} S_{4} & C_{1} S_{4} S_{23} + C_{4} S_{1} & C_{1} C_{23} & C_{1} \left(C_{23} L_{3} - L_{2} S_{2} - L3x S_{23}\right)\\- C_{1} S_{4} - C_{4} S_{1} S_{23} & - C_{1} C_{4} + S_{1} S_{4} S_{23} & C_{23} S_{1} & S_{1} \left(C_{23} L_{3} - L_{2} S_{2} - L3x S_{23}\right)\\C_{4} C_{23} & - C_{23} S_{4} & S_{23} & C_{2} L_{2} + C_{23} L3x + L_{0} + L_{3} S_{23}\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>5. Matrice \(^0T_6 = ^0T_4 \times ^4T_6\)</h3>
+        $$ ^0T_6 = \left[\begin{matrix}C_{1} C_{23} S_{5} S_{6} - C_{5} S_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) + C_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right) & C_{1} C_{6} C_{23} S_{5} - C_{5} C_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) - S_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right) & C_{1} C_{5} C_{23} + S_{5} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) & C_{1} \left(C_{23} L_{3} - L_{2} S_{2} - L3x S_{23}\right)\\- C_{5} S_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) + C_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right) + C_{23} S_{1} S_{5} S_{6} & - C_{5} C_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) + C_{6} C_{23} S_{1} S_{5} - S_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right) & C_{5} C_{23} S_{1} + S_{5} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) & S_{1} \left(C_{23} L_{3} - L_{2} S_{2} - L3x S_{23}\right)\\- C_{4} C_{5} C_{23} S_{6} - C_{6} C_{23} S_{4} + S_{5} S_{6} S_{23} & - C_{4} C_{5} C_{6} C_{23} + C_{6} S_{5} S_{23} + C_{23} S_{4} S_{6} & C_{4} C_{23} S_{5} + C_{5} S_{23} & C_{2} L_{2} + C_{23} L3x + L_{0} + L_{3} S_{23}\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+    
+    <div class="math-container">
+        <h3>6. Matrice Finale de l'effecteur \(^0T_E = ^0T_6 \times ^6_ET\)</h3>
+        <p><i>Note : Les 3 premières colonnes forment la matrice de rotation \(^0_ER\) (3×3) et la dernière colonne représente les équations finales de \(P_x, P_y, P_z\) de l'effecteur.</i></p>
+        $$ ^0T_E = \left[\begin{matrix}C_{1} C_{5} C_{23} + S_{5} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) & - C_{1} C_{23} S_{5} S_{6} + C_{5} S_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) - C_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right) & - C_{1} C_{6} C_{23} S_{5} + C_{5} C_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) + S_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right) & C_{1} \left(C_{23} L_{3} - L_{2} S_{2} - L3x S_{23}\right) + L_{6} \left(C_{1} C_{5} C_{23} + S_{5} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right)\right)\\C_{5} C_{23} S_{1} + S_{5} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) & C_{5} S_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) - C_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right) - C_{23} S_{1} S_{5} S_{6} & C_{5} C_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) - C_{6} C_{23} S_{1} S_{5} + S_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right) & L_{6} \left(C_{5} C_{23} S_{1} + S_{5} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right)\right) + S_{1} \left(C_{23} L_{3} - L_{2} S_{2} - L3x S_{23}\right)\\C_{4} C_{23} S_{5} + C_{5} S_{23} & C_{4} C_{5} C_{23} S_{6} + C_{6} C_{23} S_{4} - S_{5} S_{6} S_{23} & C_{4} C_{5} C_{6} C_{23} - C_{6} S_{5} S_{23} - C_{23} S_{4} S_{6} & C_{2} L_{2} + C_{23} L3x + L_{0} + L_{3} S_{23} + L_{6} \left(C_{4} C_{23} S_{5} + C_{5} S_{23}\right)\\0 & 0 & 0 & 1\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>7. Rotation (Matrice 3×3 de l'effecteur \(^0_ER\))</h3>
+        $$ ^0_ER = \left[\begin{matrix}C_{1} C_{5} C_{23} + S_{5} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) & - C_{1} C_{23} S_{5} S_{6} + C_{5} S_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) - C_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right) & - C_{1} C_{6} C_{23} S_{5} + C_{5} C_{6} \left(- C_{1} C_{4} S_{23} + S_{1} S_{4}\right) + S_{6} \left(C_{1} S_{4} S_{23} + C_{4} S_{1}\right)\\C_{5} C_{23} S_{1} + S_{5} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) & C_{5} S_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) - C_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right) - C_{23} S_{1} S_{5} S_{6} & C_{5} C_{6} \left(- C_{1} S_{4} - C_{4} S_{1} S_{23}\right) - C_{6} C_{23} S_{1} S_{5} + S_{6} \left(- C_{1} C_{4} + S_{1} S_{4} S_{23}\right)\\C_{4} C_{23} S_{5} + C_{5} S_{23} & C_{4} C_{5} C_{23} S_{6} + C_{6} C_{23} S_{4} - S_{5} S_{6} S_{23} & C_{4} C_{5} C_{6} C_{23} - C_{6} S_{5} S_{23} - C_{23} S_{4} S_{6}\end{matrix}\right] $$
+    </div>
+
+    <div class="math-container">
+        <h3>8. Position TCP (Vecteur 3×1 de l'effecteur \(^0P_E\))</h3>
+        $$ P_x = C_1(L_3 C_{23} - L_2 S_2 - L_{3x} S_{23}) + L_6 [C_1 C_5 C_{23} - S_5(C_1 C_4 S_{23} - S_1 S_4)] $$
+        <br>
+        $$ P_y = S_1(L_3 C_{23} - L_2 S_2 - L_{3x} S_{23}) + L_6 [S_1 C_5 C_{23} - S_5(S_1 C_4 S_{23} + C_1 S_4)] $$
+        <br>
+        $$ P_z = L_0 + L_2 C_2 + L_3 S_{23} + L_{3x} C_{23} + L_6 [C_4 S_5 C_{23} + C_5 S_{23}] $$
+    </div>
+</body>
+</html>
